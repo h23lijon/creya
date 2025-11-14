@@ -972,12 +972,13 @@ font-style: normal;
     font-size: 1.6rem;
     line-height: 2.9rem;
     text-align: center;
+    margin-bottom: 2rem;
   }
 
   .intro-text p {
     margin-top: 6rem;
     line-height: 4rem;
-    max-width: 28rem;
+    max-width: 24rem;
     font-size: 1.1rem;
     text-align: center;
   }
