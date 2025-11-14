@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Créya</title>
+
+  <!-- Typsnitt -->
+  <link rel="stylesheet" href="https://use.typekit.net/sft1pux.css">
+  <link rel="stylesheet" href="https://use.typekit.net/bdr6bzr.css">
+
+  <!-- Ikoner -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- Din CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- (Valfri) Chart.js om du verkligen använder den -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+</head>
+
+<body>
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" style="display: contents;">
+        <img src="img/cre.svg" alt="créya-logotyp" class="header-logo" />
+      </a>
+
+      <nav class="navbar">
+        <div class="menu-toggle" id="mobile-menu">
+          <span></span><span></span><span></span>
+        </div>
+        <ul id="navbar-links">
+          <!-- STÄNG ANKAR-TAGGEN KORREKT -->
+          <li><a href="about.html">about</a></li>
+                <li><a href="mailto:linnea@creya.se?subject=Kontakt%20via%20webbplats&body=Hej%20Linnéa,">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="header-spacer" aria-hidden="true"></div>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-content">
+    <div class="intro-text">
+      <h1><span style="color: white;">Creative</span><br><span style="color: #D4AF37;">expression</span></h1>
+      <p>Crafting memorable brand experiences<br> through bold design</p>
+     <a href="#portfolio-section" class="kontakt-knapp">VIEW WORK</a>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about-section" id="about">
+  <div class="about-wrapper">
+    <div class="about-text-content">
+      <h2>
+        <span style="color: white;">About</span><br>
+        <span style="color: #D4AF37;">me</span>
+      </h2>
+      <div class="titel">
+        <p>
+          Graphic Design & Web Development<br>
+          Bachelor degree expected in 2026
+        </p>
+      </div>
+    </div>
+
+    <div class="about-description">
+      <p>
+        I am Linnéa. I see creativity everywhere and instinctively know what feels right visually.
+        Creation has always been my language, a way to make sense of the world and share stories through form and color.
+        <i>Design is communication</i>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!------------------------------- Portfolio-kort --------------------------->
+<section class="portfolio-section" id="portfolio-section">
+  <h2 class="portfolio-title">
+    <span class="black-text">Selected</span><br>
+    <span class="gold-text">Works</span>
+  </h2>
+
+  <div class="portfolio-grid">
+    <!-- Card 1 -->
+    <article class="card" data-images="img/poster-1a.jpg,img/poster-1b.jpg,img/poster-1c.jpg">
+      <img src="img/box_mockup.jpg" alt="Typography Poster – series">
+      <div class="overlay">
+        <span class="badge">Packaging design</span>
+        <h3>Liquor box for Lilla Ornas Gardsbutik</h3>
+        <p>Experimental packaging work</p>
+      </div>
+      <button class="card-link" aria-label="Open gallery"></button>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="card" data-images="img/mag-1.jpg,img/mag-2.jpg">
+      <img src="img/mag-1.jpg" alt="Editorial spread">
+      <div class="overlay">
+        <span class="badge">EDITORIAL</span>
+        <h3>Magazine Layout</h3>
+        <p>Minimal, type-first composition</p>
+      </div>
+      <button class="card-link" aria-label="Open gallery"></button>
+    </article>
+
+    <!-- Card 3 -->
+    <article class="card" data-images="img/marble-1.jpg,img/marble-2.jpg">
+      <img src="img/superstars.jpg" alt="Black & white marble shapes">
+      <div class="overlay">
+        <span class="badge">ART DIRECTION</span>
+        <h3>Monochrome Study</h3>
+        <p>Contrast, shape & rhythm</p>
+      </div>
+      <button class="card-link" aria-label="Open gallery"></button>
+    </article>
+
+    <!-- Card 4 -->
+    <article class="card" data-images="img/brand-1.jpg,img/brand-2.jpg">
+      <img src="img/printhumpe.jpg" alt="Brand system preview">
+      <div class="overlay">
+        <span class="badge">ILLUSTRATION</span>
+        <h3>Childrens art</h3>
+        <p>Water color prints</p>
+      </div>
+      <button class="card-link" aria-label="Open gallery"></button>
+    </article>
+
+    <!-- Card 5 -->
+    <article class="card" data-images="img/poster-2a.jpg,img/poster-2b.jpg">
+      <img src="img/poster-2a.jpg" alt="Type exploration">
+      <div class="overlay">
+        <span class="badge">POSTER</span>
+        <h3>Type Exploration</h3>
+        <p>Bold letters, subtle tones</p>
+      </div>
+      <button class="card-link" aria-label="Open gallery"></button>
+    </article>
+
+    <!-- Card 6 -->
+    <article class="card" data-images="img/layout-1.jpg,img/layout-2.jpg">
+      <img src="img/layout-1.jpg" alt="Grid-based layout">
+      <div class="overlay">
+        <span class="badge">LAYOUT</span>
+        <h3>Grid Narrative</h3>
+        <p>Structure with personality</p>
+      </div>
+      <button class="card-link" aria-label="Open gallery"></button>
+    </article>
+  </div>
+</section>
+
+<!-- Lightbox (en per sida) -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" aria-label="Close">×</button>
+  <button class="lb-nav prev" aria-label="Previous">‹</button>
+  <img class="lb-img" src="" alt="">
+  <button class="lb-nav next" aria-label="Next">›</button>
+</div>
+
+<footer class="contact-footer">
+  <div class="contact-container">
+    <h2 class="footer-title">
+      Let’s <span class="highlight">Create</span><br> Together
+    </h2>
+    <p class="footer-subtext">
+      Have a project in mind? I’d love to hear about it!
+    </p>
+
+    <div class="contact-info">
+      <a href="mailto:linnea@creya.se" class="contact-link">
+        <i class="fa-solid fa-envelope"></i> linnea@creya.se
+      </a>
+    </div>
+
+    <div class="social-icons">
+      <a href="#" class="social"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" class="social"><i class="fa-brands fa-behance"></i></a>
+      <a href="#" class="social"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+  </div>
+</footer>
+
+<!-- Ladda din JS sist -->
+<script src="script.js"></script>
+</body>
+</html>
