@@ -839,18 +839,6 @@ font-style: normal;
   transform: translateY(-3px);
 }
 
-/* Responsivt */
-@media (max-width: 600px) {
-  .footer-subtext {
-    font-size: 0.95rem;
-  }
-
-  .contact-info {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-}
-
 
 
 /* ===================== Media Queries ====================== */
@@ -894,7 +882,7 @@ font-style: normal;
     display: flex;
   }
 }
-
+/* ==================================600========================================== */
 @media screen and (max-width: 600px) {
   .card-container {
     grid-template-columns: 1fr;
@@ -908,47 +896,53 @@ font-style: normal;
     max-width: calc(100% - 2rem);
   }
 
-
-.hero-section {
-  background-image: url(img/bg2.jpg); 
-  background-size: cover;
-  background-position: center;
-  min-height: 65vh;
-  width: 100%;
-  display: flex;
-  position: relative;
-  margin-bottom: 2rem;
-  padding: 0;
-  overflow: hidden;
-}
-
-.kontakt-knapp {
-  margin-top: 1rem;
-}
-
-.hero-content {
-  background-color: rgba(0, 0, 0, 0.9);
-  width: 100%;
-  min-height: 65vh;
-
-}
-
-.intro-text {
-  text-align: right;
-
-  margin: 2rem 1rem 2rem 1rem;
-}
+  .hero-section {
+    background-image: url(img/bg2.jpg); 
+    background-size: cover;
+    background-position: center;
+    min-height: 90vh;
+    width: 100%;
+    display: flex;
+    position: relative;
+    margin-bottom: 2rem;
+    padding: 0;
+    overflow: visible;
+  }
+   .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* lägger allt längst ned */
+    align-items: center;       /* centrerar horisontellt */
+    min-height: 90vh;
+    padding-bottom: 3rem;      /* avstånd till nederkant */
+    padding-top: 0;            /* ta bort det som sköt upp allt */
+  }
 
 
-.intro-text p {
-  font-size: 1.2rem;
-  line-height: 1.5;
-  color: #F0EBE5;
-  text-align: end;
-  padding: 0;
-  margin: 0;
-}
+  .kontakt-knapp {
+    margin-top: 1rem;
+  }
 
+  .intro-text {
+    text-align: center;
+    margin: 6rem 2rem 3rem 2rem;
+  }
+
+  .intro-text h1 {
+    font-size: 6rem;
+    line-height: 5rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .intro-text p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #F0EBE5;
+    text-align: center;
+    padding: 0;
+    margin-top: 2rem;
+  }
 
   .header-inner {
     flex-direction: column;
@@ -963,36 +957,16 @@ font-style: normal;
     gap: 1rem;
   }
 
-  .intro-text {
-    margin: 6rem 2rem 3rem 2rem;
-    text-align: center;
-  }
-
-  .intro-text h1 {
-    font-size: 1.6rem;
-    line-height: 2.9rem;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .intro-text p {
-    margin-top: 6rem;
-    line-height: 4rem;
-    max-width: 24rem;
-    font-size: 1.1rem;
-    text-align: center;
-  }
-
   .kontakt-knapp {
     margin: 2rem auto 0 auto;
   }
 
   .kontakt-container {
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  margin-left: 1rem;
-}
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin-left: 1rem;
+  }
 
   .about-section {
     flex-direction: column;
@@ -1009,7 +983,6 @@ font-style: normal;
     line-height: 0.5rem;
     text-align: center;
     margin: 0 auto;
-
   }
 
   .about-text-content {
@@ -1023,9 +996,9 @@ font-style: normal;
     font-size: 1rem;
     text-align: center;
   }
-  .card .overlay {
-    opacity: 1;
-    transform: translateY(0);
+  .portfolio-title {
+    font-size: 3rem;
+    line-height: 2.1rem;
   }
   .footer-nav {
     gap: 1.5rem;
@@ -1040,7 +1013,18 @@ font-style: normal;
     width: 20px;
     height: 20px;
   }
+
+  .footer-subtext {
+    font-size: 0.95rem;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
+
+/* ===================== 430 ====================== */
 
 @media screen and (max-width: 430px) {
 
@@ -1133,8 +1117,5 @@ font-style: normal;
     top: 0.8rem;
     z-index: 1001;
   }
-  .card .overlay {
-    opacity: 1;
-    transform: translateY(0);
-  }
+
 }
