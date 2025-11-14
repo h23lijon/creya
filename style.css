@@ -979,6 +979,7 @@ font-style: normal;
     padding: 2rem 1.5rem;
     gap: 2rem;
     height: auto;
+    margin-top: 2rem;
   }
 
   .about-section h1 {
