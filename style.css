@@ -1023,7 +1023,10 @@ font-style: normal;
     font-size: 1rem;
     text-align: center;
   }
-
+  .card .overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
   .footer-nav {
     gap: 1.5rem;
     font-size: 0.8rem;
@@ -1130,5 +1133,8 @@ font-style: normal;
     top: 0.8rem;
     z-index: 1001;
   }
-
+  .card .overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
