@@ -221,7 +221,7 @@ body h1, h2, h3 {
 }
 
 .navbar a {
-    font-family: "quicksand", sans-serif;
+  font-family: "quicksand", sans-serif;
   font-weight: 400;
   font-style: normal;
   position: relative;
@@ -242,7 +242,7 @@ body h1, h2, h3 {
   bottom: 0;
   width: 0%;
   height: 0.1rem;
-  background-color: #F0EBE5;
+  background-color: #B38600;
   transition: width 0.4s ease, background-color 0.4s ease;
 }
 
@@ -485,7 +485,7 @@ button:hover {
   --bg:#0E0E0E;
   --text:#EAEAEA;
   --overlay: rgba(0,0,0,.85);
-  --badge:#D4AF37; 
+  --badge:#B38600; 
 }
 
 .portfolio-section{
@@ -510,7 +510,7 @@ button:hover {
 }
 
 .gold-text {
-  color: #D4AF37; /* eller den gula du använder i övriga designen */
+  color: #B38600; /* eller den gula du använder i övriga designen */
 }
 
 
@@ -778,7 +778,7 @@ font-style: normal;
 }
 
 .footer-title .highlight {
-  color: #D4AF37; /* Guldaccent */
+  color: #B38600; /* Guldaccent */
 }
 
 .footer-subtext {
