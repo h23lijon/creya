@@ -928,7 +928,7 @@ font-style: normal;
 
   .intro-text {
     text-align: center;
-    margin: 6rem 2rem 3rem 2rem;
+    margin: 2rem 1.5rem 2rem 1.5rem; /* valfria värden */
   }
 
   .intro-text h1 {
@@ -939,15 +939,14 @@ font-style: normal;
   }
 
 .intro-text p {
-  font-size: 0.9rem;              /* lite större för bättre proportionalitet */
-  line-height: 1.4rem;            /* snyggare läsbarhet */
-  color: #785222;
+  font-size: 0.9rem;              
+  line-height: 1.4rem;       
   text-align: center;
-  margin-top: 1.5rem;             /* öka/minska som du vill */
-  max-width: 260px;               /* styr radlängden */
-  margin-left: auto;
-  margin-right: auto;             /* centrerar textblocket */
+  margin-top: 2rem;           
+  max-width: 260px;              
+  margin-right: auto;    
 }
+  
 
   .header-inner {
     flex-direction: column;
@@ -962,16 +961,11 @@ font-style: normal;
     gap: 1rem;
   }
 
-  .kontakt-knapp {
-    margin: 2rem auto 0 auto;
-  }
+.kontakt-knapp {
+  margin-top: 2rem;        
+  display: inline-block;    
+}
 
-  .kontakt-container {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    margin-left: 1rem;
-  }
 
   .about-section {
     flex-direction: column;
@@ -1003,8 +997,9 @@ font-style: normal;
     text-align: center;
   }
   .portfolio-title {
-    font-size: 3rem;
-    line-height: 2.1rem;
+    font-size: 2.6rem;
+    line-height: 1.8rem;
+    margin-top: 3rem;
   }
     .card .overlay {
     opacity: 1;
