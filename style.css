@@ -1046,7 +1046,7 @@ font-style: normal;
   transition: opacity 0.6s ease;
 }
 
-  .about-section {
+.about-section {
     flex-direction: column;
     align-items: left;
     gap: 0.05rem;
@@ -1054,7 +1054,7 @@ font-style: normal;
     margin-top: 3rem;
   }
 
-  .about-section h1 {
+.about-section h1 {
   font-size: 6rem;
   color: rgba(158, 143, 106, 0.05);
 }
@@ -1105,15 +1105,15 @@ font-style: normal;
 }
 
 .intro-text p {
-  font-size: 0.9rem;              /* lite större för bättre proportionalitet */
-  line-height: 1.4rem;            /* snyggare läsbarhet */
-  color: #F0EBE5;
+  font-size: 0.9rem;              
+  line-height: 1.4rem;       
   text-align: center;
-  margin-top: 2rem;             /* öka/minska som du vill */
-  max-width: 260px;               /* styr radlängden */
-  margin-left: auto;
-  margin-right: auto;             /* centrerar textblocket */
+  margin-top: 2rem;           
+  max-width: 260px;              
+  margin-right: auto;    
 }
+  
+  
   .menu-toggle {
     display: flex;
     flex-direction: column;
