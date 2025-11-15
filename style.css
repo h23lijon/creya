@@ -379,7 +379,7 @@ margin-top: 3rem;
   max-width: 75%;
 }
 
-/* --- Responsivt (mobil / små skärmar) --- */
+/* --- Responsivt (mobil / små skärmar) ---------------------------------------- */
 @media (max-width: 900px) {
   .about-wrapper {
     flex-direction: column;
@@ -407,7 +407,7 @@ margin-top: 3rem;
     max-width: 100%;
   }
 }
-
+/*===============================TA BORT OVAN OM DET FUNKAR=====================*/
 
 .slideshow {
   flex: 1 1 45%;
@@ -845,14 +845,15 @@ font-style: normal;
 
 
 /* ===================== Media Queries ====================== */
+
+/* ========= 1024 ========= */
 @media (max-width: 1024px) {
 
-  
   .hero-section {
     height: 60vh;
   }
 
-    .card-container {
+  .card-container {
     grid-template-columns: 1fr;
     margin: 0 2rem;
   }
@@ -863,7 +864,6 @@ font-style: normal;
     bottom: -2.2rem;
     max-width: calc(100% - 2rem);
   }
-
 
   .navbar > ul {
     display: none;
@@ -885,8 +885,40 @@ font-style: normal;
     display: flex;
   }
 }
-/* ==================================600========================================== */
+
+/* ========= 900 (gamla about-responsiven inbakad här) ========= */
+@media (max-width: 900px) {
+
+  .about-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .about-text-content,
+  .about-description {
+    flex: 1 1 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-text-content h2 {
+    font-size: 3rem;
+  }
+
+  .portfolio-title {
+    font-size: 3rem;
+  }
+
+  .about-description p {
+    max-width: 100%;
+  }
+}
+
+/* ========= 600 ========= */
 @media screen and (max-width: 600px) {
+
   .card-container {
     grid-template-columns: 1fr;
     margin: 0 2rem;
@@ -900,7 +932,7 @@ font-style: normal;
   }
 
   .hero-section {
-    background-image: url(img/bg2.jpg); 
+    background-image: url(img/bg2.jpg);
     background-size: cover;
     background-position: center;
     min-height: 90vh;
@@ -911,24 +943,20 @@ font-style: normal;
     padding: 0;
     overflow: visible;
   }
-   .hero-content {
+
+  .hero-content {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* lägger allt längst ned */
-    align-items: center;       /* centrerar horisontellt */
+    justify-content: flex-end;   /* lägger allt längst ned */
+    align-items: center;         /* centrerar horisontellt */
     min-height: 90vh;
-    padding-bottom: 3rem;      /* avstånd till nederkant */
-    padding-top: 0;            /* ta bort det som sköt upp allt */
-  }
-
-
-  .kontakt-knapp {
-    margin-top: 1rem;
+    padding-bottom: 3rem;        /* avstånd till nederkant */
+    padding-top: 0;
   }
 
   .intro-text {
     text-align: center;
-    margin: 2rem 1.5rem 2rem 1.5rem; /* valfria värden */
+    margin: 2rem 1.5rem 2rem 1.5rem;
   }
 
   .intro-text h1 {
@@ -938,14 +966,18 @@ font-style: normal;
     margin-top: 3rem;
   }
 
-.intro-text p {
-  font-size: 0.9rem;
-  line-height: 1.4rem;
-  text-align: center;
-  max-width: 260px;
-  margin: 2rem auto 0 auto;  /* topp, horisontellt auto, ingen botten */
-}
-  
+  .intro-text p {
+    font-size: 0.9rem;
+    line-height: 1.4rem;
+    text-align: center;
+    max-width: 260px;
+    margin: 2rem auto 0 auto;   /* centrerad box */
+  }
+
+  .kontakt-knapp {
+    margin-top: 2rem;
+    display: inline-block;
+  }
 
   .header-inner {
     flex-direction: column;
@@ -959,12 +991,6 @@ font-style: normal;
   .navbar ul {
     gap: 1rem;
   }
-
-.kontakt-knapp {
-  margin-top: 2rem;        
-  display: inline-block;    
-}
-
 
   .about-section {
     flex-direction: column;
@@ -995,15 +1021,18 @@ font-style: normal;
     font-size: 1rem;
     text-align: center;
   }
+
   .portfolio-title {
     font-size: 2.6rem;
     line-height: 1.8rem;
     margin-top: 3rem;
   }
-    .card .overlay {
+
+  .card .overlay {
     opacity: 1;
     transform: translateY(0);
   }
+
   .footer-nav {
     gap: 1.5rem;
     font-size: 0.8rem;
@@ -1028,19 +1057,18 @@ font-style: normal;
   }
 }
 
-/* ===================== 430 ====================== */
-
+/* ========= 430 ========= */
 @media screen and (max-width: 430px) {
 
   .header-logo {
-  max-height: 3rem;
-  margin-top: 0;
-  margin-left: 1rem;
-  align-items: flex-start;
-  transition: opacity 0.6s ease;
-}
+    max-height: 3rem;
+    margin-top: 0;
+    margin-left: 1rem;
+    align-items: flex-start;
+    transition: opacity 0.6s ease;
+  }
 
-.about-section {
+  .about-section {
     flex-direction: column;
     align-items: left;
     gap: 0.05rem;
@@ -1048,66 +1076,65 @@ font-style: normal;
     margin-top: 3rem;
   }
 
-.about-section h1 {
-  font-size: 6rem;
-  color: rgba(158, 143, 106, 0.05);
-}
+  .about-section h1 {
+    font-size: 6rem;
+    color: rgba(158, 143, 106, 0.05);
+  }
 
-.about-section p {
- text-align: center;
- align-items: center;
-}
+  .about-section p {
+    text-align: center;
+    align-items: center;
+  }
 
-.hero-section {
-  background-image: url(img/bg2.jpg); 
-  background-size: cover;
-  background-position: center;
-  min-height: 65vh;
-  width: 100%;
-  display: flex;
-  position: relative;
-  margin-bottom: 1rem;
-  padding: 0;
-  overflow: hidden;
-}
+  .hero-section {
+    background-image: url(img/bg2.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 65vh;
+    width: 100%;
+    display: flex;
+    position: relative;
+    margin-bottom: 1rem;
+    padding: 0;
+    overflow: hidden;
+  }
 
-.kontakt-knapp {
-  margin-top: 2rem;         /* öka avståndet */
-  display: inline-block;     /* gör den lättare att centrera */
-}
-
-.hero-content {
-  background-color: rgba(0, 0, 0, 0.9);
-  width: 100%;
-  min-height: 65vh;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-}
+  .hero-content {
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    min-height: 65vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
 
   .intro-text {
     text-align: center;
-    margin: 2rem 1.5rem 2rem 1.5rem; /* valfria värden */
+    margin: 2rem 1.5rem 2rem 1.5rem;
   }
 
-.intro-text h1 { 
-  font-size: 5rem;
-  color: #F0EBE5;
-font-family: "playfair-display", serif;
-font-weight: 400;
-font-style: normal;
-}
+  .intro-text h1 {
+    font-size: 5rem;
+    color: #F0EBE5;
+    font-family: "playfair-display", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 
-.intro-text p {
-  font-size: 0.9rem;              
-  line-height: 1.4rem;       
-  text-align: center;
-  margin-top: 2rem;           
-  max-width: 260px;              
-  margin-right: auto;    
-}
-  
-  
+  .intro-text p {
+    font-size: 0.9rem;
+    line-height: 1.4rem;
+    text-align: center;
+    margin-top: 2rem;
+    max-width: 260px;
+    margin: 2rem auto 0 auto;   /* viktigt för centrerad text på iPhone */
+  }
+
+  .kontakt-knapp {
+    margin-top: 2rem;
+    display: inline-block;
+  }
+
   .menu-toggle {
     display: flex;
     flex-direction: column;
@@ -1117,12 +1144,14 @@ font-style: normal;
     top: 0.8rem;
     z-index: 1001;
   }
+
   .portfolio-title {
     font-size: 2.6rem;
     line-height: 1.8rem;
     margin-top: 3rem;
   }
-    .card .overlay {
+
+  .card .overlay {
     opacity: 1;
     transform: translateY(0);
   }
