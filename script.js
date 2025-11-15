@@ -62,76 +62,84 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  // === Navbar på scroll (om hero/header finns) ===
-  const hero = document.querySelector('.hero-section-ill') || document.querySelector('.hero-section');
-  const header = document.querySelector('.site-header');
-  const logo = document.querySelector('.header-logo');
+  // === Navbar på scroll (tidigt, ej efter hero) ===
+const hero = document.querySelector('.hero-section-ill') || document.querySelector('.hero-section');
+const header = document.querySelector('.site-header');
+const logo = document.querySelector('.header-logo');
 
-  if (hero && header) {
-    window.addEventListener('scroll', () => {
-      const heroBottom = hero.getBoundingClientRect().bottom;
-      if (heroBottom <= 0) {
-        header.classList.add('scrolled');
-        header.classList.remove('hover-scrolled');
-        if (logo) logo.src = 'img/creya6.svg';
-      } else {
-        header.classList.remove('scrolled');
-        if (logo) logo.src = 'img/cre.svg';
-      }
-    });
+// Justerbart tröskelvärde för när navbaren ska bli svart
+const SCROLL_THRESHOLD = 10;
 
-    header.addEventListener('mouseenter', () => {
-      if (!header.classList.contains('scrolled')) {
-        header.classList.add('hover-scrolled');
-        if (logo) logo.src = 'img/creya6.svg';
-      }
-    });
+if (header) {
+  window.addEventListener('scroll', () => {
+    const hasScrolled = window.scrollY > SCROLL_THRESHOLD;
 
-    header.addEventListener('mouseleave', () => {
+    if (hasScrolled) {
+      header.classList.add('scrolled');
       header.classList.remove('hover-scrolled');
-      const heroBottom = hero.getBoundingClientRect().bottom;
-      if (heroBottom > 0 && logo) logo.src = 'img/cre.svg';
-    });
-  }
+      if (logo) logo.src = 'img/cre.svg';
+    } else {
+      header.classList.remove('scrolled');
+      header.classList.remove('hover-scrolled');
+      if (logo) logo.src = 'img/cre.svg';
+    }
+  });
 
-  // === Form-modaler (guards) ===
-  const formModal = document.getElementById("formModal");
-  const thankModal = document.getElementById("thankModal");
-  const contactForm = document.getElementById("contactForm");
+  header.addEventListener('mouseenter', () => {
+    // Endast hover-effekt när vi är högst upp (transparent läge)
+    if (window.scrollY <= SCROLL_THRESHOLD && !header.classList.contains('scrolled')) {
+      header.classList.add('hover-scrolled');
+      if (logo) logo.src = 'img/cre.svg';
+    }
+  });
 
-  function openFormModal() { if (formModal) formModal.style.display = "flex"; }
-  function closeFormModal() { if (formModal) formModal.style.display = "none"; }
-  function closeThankModal() { if (thankModal) thankModal.style.display = "none"; }
+  header.addEventListener('mouseleave', () => {
+    // Gå tillbaka till rätt state beroende på scroll
+    if (window.scrollY <= SCROLL_THRESHOLD) {
+      header.classList.remove('hover-scrolled');
+      if (logo) logo.src = 'img/cre.svg';
+    }
+  });
+}
 
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      closeFormModal();
-      if (thankModal) thankModal.style.display = "flex";
-    });
-  }
+// === Form-modaler (guards) ===
+const formModal = document.getElementById("formModal");
+const thankModal = document.getElementById("thankModal");
+const contactForm = document.getElementById("contactForm");
 
-  const openFormButton = document.getElementById("openFormButton");
-  if (openFormButton) openFormButton.addEventListener("click", openFormModal);
+function openFormModal() { if (formModal) formModal.style.display = "flex"; }
+function closeFormModal() { if (formModal) formModal.style.display = "none"; }
+function closeThankModal() { if (thankModal) thankModal.style.display = "none"; }
 
-  const resetForm = document.getElementById("resetForm");
-  if (resetForm) {
-    resetForm.addEventListener("click", () => {
-      if (contactForm) contactForm.reset();
-      const charCount = document.getElementById("charCount");
-      if (charCount) charCount.textContent = "200 tecken kvar";
-    });
-  }
+if (contactForm) {
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    closeFormModal();
+    if (thankModal) thankModal.style.display = "flex";
+  });
+}
 
-  const textarea = document.getElementById("meddelande");
-  const charCount = document.getElementById("charCount");
-  if (textarea && charCount) {
-    textarea.addEventListener("input", () => {
-      const remaining = 200 - textarea.value.length;
-      charCount.textContent = `${remaining} tecken kvar`;
-      charCount.style.color = remaining < 20 ? "#b30000" : "#666";
-    });
-  }
+const openFormButton = document.getElementById("openFormButton");
+if (openFormButton) openFormButton.addEventListener("click", openFormModal);
+
+const resetForm = document.getElementById("resetForm");
+if (resetForm) {
+  resetForm.addEventListener("click", () => {
+    if (contactForm) contactForm.reset();
+    const charCount = document.getElementById("charCount");
+    if (charCount) charCount.textContent = "200 tecken kvar";
+  });
+}
+
+const textarea = document.getElementById("meddelande");
+const charCount = document.getElementById("charCount");
+if (textarea && charCount) {
+  textarea.addEventListener("input", () => {
+    const remaining = 200 - textarea.value.length;
+    charCount.textContent = `${remaining} tecken kvar`;
+    charCount.style.color = remaining < 20 ? "#b30000" : "#666";
+  });
+}
 
   // === (valfri) Mini-slider – lämnas oförändrad om du använder den på andra sidor ===
   (function initPortfolioSliders() {
