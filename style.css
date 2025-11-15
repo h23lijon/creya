@@ -939,12 +939,11 @@ font-style: normal;
   }
 
 .intro-text p {
-  font-size: 0.9rem;              
-  line-height: 1.4rem;       
+  font-size: 0.9rem;
+  line-height: 1.4rem;
   text-align: center;
-  margin-top: 2rem;           
-  max-width: 260px;              
-  margin-right: auto;    
+  max-width: 260px;
+  margin: 2rem auto 0 auto;  /* topp, horisontellt auto, ingen botten */
 }
   
 
