@@ -538,8 +538,22 @@ body {
 
 @media (max-width: 768px) {
   /* Döljer pilar på mobil */
-  .nav-arrow { display: none; }
+
+  /* Visa pilar på mobil, men gör dem mindre */
+  .nav-arrow {
+    display: flex;         /* Visa dem! */
+    opacity: 1;            /* Alltid synliga (ingen hover-effekt behövs) */
+    width: 1.5rem;           /* Lite mindre än på desktop */
+    height: 1.5rem;
+    font-size: 0.8rem;
+    background-color: rgba(44, 42, 42, 0.3); /* Lite tydligare bakgrund direkt */
+  }
+  
+  /* Justera positionen så de inte täcker bilden för mycket */
+  .prev-arrow { left: 0.5rem; }
+  .next-arrow { right: 0.5rem; }
 }
+
 
 @media (max-width: 600px){
   .hero-section{ min-height: 55vh; }
