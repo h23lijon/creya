@@ -546,7 +546,7 @@ body {
     width: 1.5rem;           /* Lite mindre än på desktop */
     height: 1.5rem;
     font-size: 0.8rem;
-    background-color: rgba(44, 42, 42, 0.3); /* Lite tydligare bakgrund direkt */
+    background-color: rgba(66, 65, 65, 0.2); /* Lite tydligare bakgrund direkt */
   }
   
   /* Justera positionen så de inte täcker bilden för mycket */
