@@ -13,44 +13,39 @@
   <!-- Ikoner -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-  <!-- Din CSS -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- (Valfri) Chart.js om du verkligen använder den -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
 </head>
 
 <body>
-<header class="site-header">
+<header class="site-header" id="siteHeader">
   <div class="container">
     <div class="header-inner">
-      <a href="index.html" style="display: contents;">
-        <img src="img/cre.svg" alt="créya-logotyp" class="header-logo" />
+      <a href="index.html" class="header-logo-link" aria-label="Gå till startsidan">
+        <img src="img/CREYA_LOGO.svg" alt="créya-logotyp" class="header-logo" />
       </a>
 
-      <nav class="navbar">
-        <div class="menu-toggle" id="mobile-menu">
+      <nav class="navbar" aria-label="Huvudmeny">
+        <button class="menu-toggle" id="mobile-menu" type="button"
+                aria-label="Öppna meny" aria-expanded="false" aria-controls="navbar-links">
           <span></span><span></span><span></span>
-        </div>
+        </button>
+
         <ul id="navbar-links">
-          <!-- STÄNG ANKAR-TAGGEN KORREKT -->
-          <li><a href="about.html">about</a></li>
-                <li><a href="mailto:linnea@creya.se?subject=Kontakt%20via%20webbplats&body=Hej%20Linnéa,">CONTACT</a></li>
+          <li><a href="about.html">OM</a></li>
+          <li><a href="mailto:thealinneas@hotmail.se?subject=Kontakt%20via%20webbplats&body=Hej%20Linnéa,">KONTAKT</a></li>
         </ul>
       </nav>
     </div>
   </div>
 </header>
 
-<div class="header-spacer" aria-hidden="true"></div>
-
 <!-- Hero Section -->
-<section class="hero-section">
+<section class="hero-section" id="top">
   <div class="hero-content">
     <div class="intro-text">
-      <h1><span style="color: white;">Creative</span><br><span style="color: #B38600;">expression</span></h1>
-      <p>Crafting memorable brand experiences<br> through bold design</p>
-     <a href="#portfolio-section" class="kontakt-knapp">VIEW WORK</a>
+      <h1><span class="txt-white">Kreativt</span><br><span class="txt-gold">uttryck</span></h1>
+      <p>Portfolio – Linnéa Jones</p>
+      <a href="#portfolio-section" class="kontakt-knapp">SE PROJEKT</a>
     </div>
   </div>
 </section>
@@ -60,153 +55,204 @@
   <div class="about-wrapper">
     <div class="about-text-content">
       <h2>
-        <span style="color: white;">About</span><br>
-        <span style="color: #B38600;">me</span>
+        <span class="txt-white">Om</span><br>
+        <span class="txt-gold">mig</span>
       </h2>
       <div class="titel">
-        <p>
-          Graphic Design & Web Development<br>
-          Bachelor degree expected in 2026
-        </p>
+        <p>Grafisk design och webbutveckling<br>Kandidatexamen juni 2026</p>
       </div>
     </div>
 
     <div class="about-description">
       <p>
-        I am Linnéa. I see creativity everywhere and instinctively know what feels right visually.
-        Creation has always been my language, a way to make sense of the world and share stories through form and color.
-        <i>Design is communication</i>.
+        Jag heter Linnéa. Jag ser möjligheter till kreativitet i allt och vet instinktivt vad som känns rätt visuellt.
+
+Att skapa är mitt främsta uttryckssätt; ett verktyg för att sortera intryck och förmedla berättelser med hjälp av form och färg. För mig är design kommunikation.
       </p>
     </div>
   </div>
 </section>
 
-<!------------------------------- Portfolio-kort --------------------------->
+<!-- Portfolio -->
 <section class="portfolio-section" id="portfolio-section">
   <h2 class="portfolio-title">
-    <span class="black-text">Selected</span><br>
-    <span class="gold-text">Works</span>
+    <span class="black-text">Utvalda</span><br>
+    <span class="gold-text">projekt</span>
   </h2>
 
-  <div class="portfolio-grid">
-    <!-- Card 1 -->
-    <article class="card" data-images="img/poster-1a.jpg,img/poster-1b.jpg,img/poster-1c.jpg">
-      <img src="img/box_mockup.jpg" alt="Typography Poster – series">
-      <div class="overlay">
-        <span class="badge">Packaging design</span>
-        <h3>Liquor box for Lilla Ornas Gardsbutik</h3>
-        <p>Experimental packaging work</p>
-      </div>
-      <button class="card-link" aria-label="Open gallery"></button>
-    </article>
+ <section class="portfolio-grid">
 
-    <!-- Card 2 -->
-    <article class="card" data-images="img/mag-1.jpg,img/mag-2.jpg">
-      <img src="img/mag-1.jpg" alt="Editorial spread">
-      <div class="overlay">
-        <span class="badge">EDITORIAL</span>
-        <h3>Magazine Layout</h3>
-        <p>Minimal, type-first composition</p>
-      </div>
-      <button class="card-link" aria-label="Open gallery"></button>
-    </article>
-
-    <!-- Card 3 -->
-    <article class="card" data-images="img/marble-1.jpg,img/marble-2.jpg">
-      <img src="img/superstars.jpg" alt="Black & white marble shapes">
-      <div class="overlay">
-        <span class="badge">ART DIRECTION</span>
-        <h3>Monochrome Study</h3>
-        <p>Contrast, shape & rhythm</p>
-      </div>
-      <button class="card-link" aria-label="Open gallery"></button>
-    </article>
-
-    <!-- Card 4 -->
-    <article class="card" data-images="img/brand-1.jpg,img/brand-2.jpg">
-      <img src="img/printhumpe.jpg" alt="Brand system preview">
-      <div class="overlay">
+  <article class="project-card">
+    <div class="image-slider">
+      <img src="img/printhumpe.jpg" alt="Illustration i akvarell av en val" loading="lazy">
+      <img src="img/unipegpink.jpg" alt="Illustration i akvarell av en enhörning, vit med rosa man" loading="lazy">
+      <img src="img/illustration2_akvarell.jpg" alt="Illustration i akvarell av skogens djur, en älg med flera mindre djur i sin krona" loading="lazy">
+    </div>
+      <button class="nav-arrow prev-arrow" aria-label="Föregående bild">&#10094;</button>
+  <button class="nav-arrow next-arrow" aria-label="Nästa bild">&#10095;</button>
+    <div class="card-overlay">
+      <div class="card-content">
         <span class="badge">ILLUSTRATION</span>
-        <h3>Childrens art</h3>
-        <p>Water color prints</p>
-      </div>
-      <button class="card-link" aria-label="Open gallery"></button>
-    </article>
-
-    <!-- Card 5 -->
-    <article class="card" data-images="img/poster-2a.jpg,img/poster-2b.jpg">
-      <img src="img/2mockup_bruksanvisning.jpg" alt="Type exploration">
-      <div class="overlay">
-        <span class="badge">BROCHURE</span>
-        <h3>Type Exploration</h3>
-        <p>Bold letters, subtle tones</p>
-      </div>
-      <button class="card-link" aria-label="Open gallery"></button>
-    </article>
-
-    <!-- Card 6 -->
-<article class="card" data-images="img/layout-1.jpg,img/layout-2.jpg">
-  <img src="img/layout-1.jpg" alt="Grid-based layout">
-
-  <div class="overlay">
-    <span class="badge">LAYOUT</span>
-    <h3>Grid Narrative</h3>
-    <p>Structure with personality</p>
-
-    <!-- Device frame -->
-    <div class="device">
-      <div class="screen">
-        <iframe
-          style="border: 1px solid rgba(0, 0, 0, 0.1);"
-          width="800"
-          height="450"
-          src="https://embed.figma.com/design/RctW52G3kqrFxgvM7afCGP/Untitled?node-id=0-1&embed-host=share"
-          allowfullscreen>
-        </iframe>
+        <h3>Barnposters</h3>
+        <p>Illustrerade i akvarell</p>
       </div>
     </div>
+  </article>
 
-    <p class="note">Interactive prototype (Figma)</p>
-  </div>
+  <article class="project-card">
+    <div class="image-slider">
+      <img src="img/jones_linnea_INL4_21.png" alt="Projektbild 4" loading="lazy">
+      <img src="img/jones_linnea_INL4_212.png" alt="Projektbild 5" loading="lazy">
+      <img src="img/jones_linnea_INL4_213.png" loading="lazy">
+      <img src="img/jones_linnea_INL4_214.png" alt="Projektbild 6" loading="lazy">
+      <img src="img/jones_linnea_INL4_215.png" alt="Projektbild 7" loading="lazy">
+      <img src="img/jones_linnea_INL4_216.png" alt="Projektbild 3" loading="lazy">
+      <img src="img/jones_linnea_INL4_217.png"alt="Projektbild 3" loading="lazy">
+      <img src="img/jones_linnea_INL4_218.png" alt="Projektbild 3" loading="lazy">
+      <img src="img/jones_linnea_INL4_219.png" alt="Projektbild 3" loading="lazy">
+      <img src="img/jones_linnea_INL4_2110.png" alt="Projektbild 3" loading="lazy">
+      <img src="img/jones_linnea_INL4_2111.png" alt="Projektbild 3" loading="lazy">
+      <img src="img/jones_linnea_INL4_2112.png" alt="Projektbild 3" loading="lazy">
+      <img src="img/jones_linnea_INL4_2113.png" alt="Projektbild 3" loading="lazy">
+      <img src="img/jones_linnea_INL4_2114.png" alt="Projektbild 3" loading="lazy">
+      <img src="img/jones_linnea_INL4_2115.png" alt="Projektbild 3" loading="lazy">
+    </div>
+      <button class="nav-arrow prev-arrow" aria-label="Föregående bild">&#10094;</button>
+  <button class="nav-arrow next-arrow" aria-label="Nästa bild">&#10095;</button>
+    <div class="card-overlay">
+      <div class="card-content">
+        <span class="badge">Layout</span>
+        <h3>Layout- & typografimanual</h3>
+        <p>InDesign</p>
+      </div>
+    </div>
+  </article>
 
-  <button class="card-link" aria-label="Open gallery"></button>
-</article>
+  <article class="project-card">
+    <div class="image-slider">
+      <img src="img/logo.jpg" alt="Projektbild 4" loading="lazy">
+      <img src="img/bild5.jpg" alt="Projektbild 5" loading="lazy">
+    </div>
+      <button class="nav-arrow prev-arrow" aria-label="Föregående bild">&#10094;</button>
+  <button class="nav-arrow next-arrow" aria-label="Nästa bild">&#10095;</button>
+    <div class="card-overlay">
+      <div class="card-content">
+        <span class="badge">Branding</span>
+        <h3>Norrsken Identity</h3>
+        <p>Visual identity and logo</p>
+      </div>
+    </div>
+  </article>
 
-  </div>
+  <article class="project-card">
+    <div class="image-slider">
+      <img src="img/bild6.jpg" alt="Projektbild 6" loading="lazy">
+    </div>
+      <button class="nav-arrow prev-arrow" aria-label="Föregående bild">&#10094;</button>
+  <button class="nav-arrow next-arrow" aria-label="Nästa bild">&#10095;</button>
+    <div class="card-overlay">
+      <div class="card-content">
+        <span class="badge">Editorial</span>
+        <h3>Magazine Layout</h3>
+        <p>Typography and grid systems</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="project-card">
+    <div class="image-slider">
+      <img src="img/logo_sound@2x.png" alt="Projektbild 7" loading="lazy">
+      <img src="img/bild2.jpg" alt="Projektbild 8" loading="lazy">
+    </div>
+    <button class="nav-arrow prev-arrow" aria-label="Föregående bild">&#10094;</button>
+  <button class="nav-arrow next-arrow" aria-label="Nästa bild">&#10095;</button>
+    <div class="card-overlay">
+      <div class="card-content">
+        <span class="badge">Branding</span>
+        <h3>Logotyp</h3>
+        <p>För fiktivt företag SoundScape</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="project-card">
+    <div class="image-slider">
+      <img src="img/u2_manual1.png" alt="Projektbild 9" loading="lazy">
+      <img src="img/u2_manual12.png" alt="Projektbild 9" loading="lazy">
+      <img src="img/u2_manual13.png" alt="Projektbild 9" loading="lazy">
+      <img src="img/u2_manual14.png" alt="Projektbild 9" loading="lazy">
+      <img src="img/u2_manual15.png" alt="Projektbild 9" loading="lazy">
+      <img src="img/u2_manual16.png" alt="Projektbild 9" loading="lazy">
+      <img src="img/u2_manual17.png" alt="Projektbild 9" loading="lazy">
+      <img src="img/u2_manual18.png" alt="Projektbild 9" loading="lazy">
+    </div>
+      <button class="nav-arrow prev-arrow" aria-label="Föregående bild">&#10094;</button>
+  <button class="nav-arrow next-arrow" aria-label="Nästa bild">&#10095;</button>
+    <div class="card-overlay">
+      <div class="card-content">
+        <span class="badge">Branding</span>
+        <h3>Brand Guidelines</h3>
+        <p>SoundScape</p>
+      </div>
+    </div>
+  </article>
+
 </section>
-
-<!-- Lightbox (en per sida) -->
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="lb-close" aria-label="Close">×</button>
-  <button class="lb-nav prev" aria-label="Previous">‹</button>
-  <img class="lb-img" src="" alt="">
-  <button class="lb-nav next" aria-label="Next">›</button>
-</div>
+</section>
 
 <footer class="contact-footer">
   <div class="contact-container">
-    <h2 class="footer-title">
-      Let’s <span class="highlight">Create</span><br> Together
-    </h2>
-    <p class="footer-subtext">
-      Have a project in mind? I’d love to hear about it!
-    </p>
+    <h2 class="footer-title">Ska vi <span class="highlight">höras?</span></h2>
+    <p class="footer-subtext">Kontakta mig gärna:</p>
 
     <div class="contact-info">
       <a href="mailto:linnea@creya.se" class="contact-link">
-        <i class="fa-solid fa-envelope"></i> linnea@creya.se
+        <i class="fa-solid fa-envelope"></i> thealinneas@hotmail.se
       </a>
     </div>
 
     <div class="social-icons">
-      <a href="#" class="social"><i class="fa-brands fa-instagram"></i></a>
-      <a href="#" class="social"><i class="fa-brands fa-behance"></i></a>
-      <a href="#" class="social"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="#" class="social" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" class="social" aria-label="Behance"><i class="fa-brands fa-behance"></i></a>
+      <a href="#" class="social" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
     </div>
   </div>
 </footer>
 
-<!-- Ladda din JS sist -->
 <script src="script.js"></script>
+<script>
+  const sliders = document.querySelectorAll('.image-slider');
+
+  sliders.forEach(slider => {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2; // *2 gör att det scrollar lite snabbare
+      slider.scrollLeft = scrollLeft - walk;
+    });
+  });
+</script>
 </body>
 </html>

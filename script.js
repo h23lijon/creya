@@ -1,278 +1,209 @@
-// All JS körs först när DOM finns
-document.addEventListener('DOMContentLoaded', () => {
-  // === Mobilmeny ===
-  const toggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('.navbar ul');
-  if (toggle && nav) {
-    toggle.addEventListener('click', () => nav.classList.toggle('active'));
+document.addEventListener("DOMContentLoaded", () => {
+  /* ===== Mobilmeny ===== */
+  const toggle = document.getElementById("mobile-menu");
+  const links = document.getElementById("navbar-links");
+  if (toggle && links) {
+    toggle.addEventListener("click", () => {
+      const isOpen = links.classList.toggle("active");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
   }
 
-  // === Fullskärms-intro (om elementen finns) ===
-  (function () {
-    const OVERLAY_ID = 'introOverlay';
-    const VIDEO_ID = 'introVideo';
-    const SKIP_ID = 'skipBtn';
-    const FLAG = 'introPlayedThisSession';
+  /* ===== Header: exakt som screenshot (transparent -> svart transparent vid scroll) ===== */
+  const header = document.getElementById("siteHeader");
+  const SCROLL_THRESHOLD = 10;
 
-    const overlay = document.getElementById(OVERLAY_ID);
-    const video = document.getElementById(VIDEO_ID);
-    const skip = document.getElementById(SKIP_ID);
+  function updateHeader() {
+    if (!header) return;
+    header.classList.toggle("scrolled", window.scrollY > SCROLL_THRESHOLD);
+  }
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, { passive: true });
 
-    if (!overlay || !video) return;
+  /* ===== Mini-slider per card ===== */
+  const cards = Array.from(document.querySelectorAll(".card"));
 
-    const alreadyPlayed = sessionStorage.getItem(FLAG) === '1';
+  cards.forEach((card) => {
+    const images = (card.dataset.images || "")
+      .split(",")
+      .map(s => s.trim())
+      .filter(Boolean);
 
-    function hideOverlay() {
-      overlay.classList.add('is-hidden');
-      overlay.setAttribute('aria-hidden', 'true');
-    }
+    if (!images.length) return;
 
-    function markPlayed() {
-      try { sessionStorage.setItem(FLAG, '1'); } catch (_) {}
-    }
+    const imgEl = card.querySelector(".card-img");
+    const prevBtn = card.querySelector(".card-nav.prev");
+    const nextBtn = card.querySelector(".card-nav.next");
+    const dotsWrap = card.querySelector(".card-dots");
 
-    if (!alreadyPlayed) {
-      video.muted = true;
-      video.play().catch(() => {});
-      markPlayed();
-    } else {
-      hideOverlay();
-    }
+    let idx = 0;
+    card.dataset.index = "0";
 
-    video.addEventListener('ended', hideOverlay);
-    if (skip) skip.addEventListener('click', hideOverlay);
-
-    overlay.addEventListener('click', (e) => {
-      if (e.target !== skip) hideOverlay();
-    });
-
-    function shouldDismissOn(el) {
-      if (!el) return false;
-      if (el.matches('input, textarea, select')) return true;
-      if (el.isContentEditable) return true;
-      return false;
-    }
-
-    document.addEventListener('focusin', (e) => {
-      if (shouldDismissOn(e.target)) hideOverlay();
-    });
-
-    document.addEventListener('click', (e) => {
-      if (shouldDismissOn(e.target)) hideOverlay();
-    });
-  })();
-
-  // === Navbar på scroll (tidigt, ej efter hero) ===
-const hero = document.querySelector('.hero-section-ill') || document.querySelector('.hero-section');
-const header = document.querySelector('.site-header');
-const logo = document.querySelector('.header-logo');
-
-// Justerbart tröskelvärde för när navbaren ska bli svart
-const SCROLL_THRESHOLD = 10;
-
-if (header) {
-  window.addEventListener('scroll', () => {
-    const hasScrolled = window.scrollY > SCROLL_THRESHOLD;
-
-    if (hasScrolled) {
-      header.classList.add('scrolled');
-      header.classList.remove('hover-scrolled');
-      if (logo) logo.src = 'img/cre.svg';
-    } else {
-      header.classList.remove('scrolled');
-      header.classList.remove('hover-scrolled');
-      if (logo) logo.src = 'img/cre.svg';
-    }
-  });
-
-  header.addEventListener('mouseenter', () => {
-    // Endast hover-effekt när vi är högst upp (transparent läge)
-    if (window.scrollY <= SCROLL_THRESHOLD && !header.classList.contains('scrolled')) {
-      header.classList.add('hover-scrolled');
-      if (logo) logo.src = 'img/cre.svg';
-    }
-  });
-
-  header.addEventListener('mouseleave', () => {
-    // Gå tillbaka till rätt state beroende på scroll
-    if (window.scrollY <= SCROLL_THRESHOLD) {
-      header.classList.remove('hover-scrolled');
-      if (logo) logo.src = 'img/cre.svg';
-    }
-  });
-}
-
-// === Form-modaler (guards) ===
-const formModal = document.getElementById("formModal");
-const thankModal = document.getElementById("thankModal");
-const contactForm = document.getElementById("contactForm");
-
-function openFormModal() { if (formModal) formModal.style.display = "flex"; }
-function closeFormModal() { if (formModal) formModal.style.display = "none"; }
-function closeThankModal() { if (thankModal) thankModal.style.display = "none"; }
-
-if (contactForm) {
-  contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    closeFormModal();
-    if (thankModal) thankModal.style.display = "flex";
-  });
-}
-
-const openFormButton = document.getElementById("openFormButton");
-if (openFormButton) openFormButton.addEventListener("click", openFormModal);
-
-const resetForm = document.getElementById("resetForm");
-if (resetForm) {
-  resetForm.addEventListener("click", () => {
-    if (contactForm) contactForm.reset();
-    const charCount = document.getElementById("charCount");
-    if (charCount) charCount.textContent = "200 tecken kvar";
-  });
-}
-
-const textarea = document.getElementById("meddelande");
-const charCount = document.getElementById("charCount");
-if (textarea && charCount) {
-  textarea.addEventListener("input", () => {
-    const remaining = 200 - textarea.value.length;
-    charCount.textContent = `${remaining} tecken kvar`;
-    charCount.style.color = remaining < 20 ? "#b30000" : "#666";
-  });
-}
-
-  // === (valfri) Mini-slider – lämnas oförändrad om du använder den på andra sidor ===
-  (function initPortfolioSliders() {
-    const sliders = document.querySelectorAll('.portfolio-slider');
-    if (!sliders.length) return;
-
-    sliders.forEach((slider) => {
-      const slides = Array.from(slider.querySelectorAll('.portfolio-slide'));
-      if (slides.length <= 1) return;
-
-      const prevBtn = slider.querySelector('.portfolio-slider-btn.prev');
-      const nextBtn = slider.querySelector('.portfolio-slider-btn.next');
-      const dotsWrap = slider.querySelector('.portfolio-slider-dots');
-
-      let index = slides.findIndex(s => s.classList.contains('active'));
-      if (index === -1) index = 0;
-
-      const dots = slides.map((_, i) => {
-        const b = document.createElement('button');
-        if (i === index) b.classList.add('is-active');
-        b.addEventListener('click', () => goTo(i));
+    const dots = [];
+    if (dotsWrap) {
+      dotsWrap.innerHTML = "";
+      images.forEach((_, i) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        if (i === 0) b.classList.add("is-active");
+        b.addEventListener("click", (e) => {
+          e.stopPropagation();
+          goTo(i);
+        });
         dotsWrap.appendChild(b);
-        return b;
+        dots.push(b);
       });
-
-      function goTo(i) {
-        slides[index].classList.remove('active');
-        dots[index].classList.remove('is-active');
-        index = (i + slides.length) % slides.length;
-        slides[index].classList.add('active');
-        dots[index].classList.add('is-active');
-      }
-
-      function next() { goTo(index + 1); }
-      function prev() { goTo(index - 1); }
-
-      if (nextBtn) nextBtn.addEventListener('click', next);
-      if (prevBtn) prevBtn.addEventListener('click', prev);
-
-      let timer = null;
-      const autoplay = slider.dataset.autoplay === 'true';
-      const interval = Number(slider.dataset.interval || 4000);
-
-      function start() { if (!autoplay) return; stop(); timer = setInterval(next, interval); }
-      function stop() { if (timer) clearInterval(timer); }
-
-      slider.addEventListener('mouseenter', stop);
-      slider.addEventListener('mouseleave', start);
-      slider.addEventListener('touchstart', stop, { passive: true });
-      slider.addEventListener('touchend', start);
-
-      start();
-    });
-  })();
-
-  // === Lightbox för portfolio cards med flera bilder ===
-  (function initLightboxGallery() {
-    const lb = document.getElementById('lightbox');
-    const cards = document.querySelectorAll('.card');
-    if (!lb || !cards.length) return;
-
-    const imgEl   = lb.querySelector('.lb-img');
-    const btnPrev = lb.querySelector('.prev');
-    const btnNext = lb.querySelector('.next');
-    const btnClose= lb.querySelector('.lb-close');
-
-    let gallery = [];
-    let index = 0;
-
-    function updateImg() {
-      imgEl.src = gallery[index];
-      imgEl.alt = '';
     }
 
-    function openLB(imgs, start = 0) {
-      gallery = imgs;
-      index = start;
-      updateImg();
-      lb.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+    function update() {
+      card.dataset.index = String(idx);
+      if (imgEl) imgEl.src = images[idx];
+
+      dots.forEach((d, i) => d.classList.toggle("is-active", i === idx));
+
+      const multi = images.length > 1;
+      if (prevBtn) prevBtn.style.display = multi ? "" : "none";
+      if (nextBtn) nextBtn.style.display = multi ? "" : "none";
+      if (dotsWrap) dotsWrap.style.display = multi ? "" : "none";
     }
 
-    function closeLB() {
-      lb.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      gallery = [];
-      index = 0;
+    function goTo(i) {
+      idx = (i + images.length) % images.length;
+      update();
+    }
+    function next() { goTo(idx + 1); }
+    function prev() { goTo(idx - 1); }
+
+    if (nextBtn) nextBtn.addEventListener("click", (e) => { e.stopPropagation(); next(); });
+    if (prevBtn) prevBtn.addEventListener("click", (e) => { e.stopPropagation(); prev(); });
+
+    // swipe på card-bilden
+    if (imgEl) {
+      let startX = null;
+      imgEl.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+      }, { passive: true });
+
+      imgEl.addEventListener("touchend", (e) => {
+        if (startX == null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+        startX = null;
+      }, { passive: true });
     }
 
-    function next() { if (gallery.length) { index = (index + 1) % gallery.length; updateImg(); } }
-    function prev() { if (gallery.length) { index = (index - 1 + gallery.length) % gallery.length; updateImg(); } }
+    update();
+  });
 
-    // Koppla kort → öppna lightbox
-    cards.forEach(card => {
-      const btn = card.querySelector('.card-link');
-      const imgNode = card.querySelector('img');
-      const imgs = (card.dataset.images || "")
-        .split(',')
-        .map(s => s.trim())
-        .filter(Boolean);
+  /* ===== Lightbox ===== */
+  const lb = document.getElementById("lightbox");
+  if (!lb) return;
 
-      if (!imgs.length) return; // inget galleri definierat
+  const lbImg = lb.querySelector(".lb-img");
+  const btnPrev = lb.querySelector(".lb-nav.prev");
+  const btnNext = lb.querySelector(".lb-nav.next");
+  const btnClose = lb.querySelector(".lb-close");
 
-      if (btn) btn.addEventListener('click', () => openLB(imgs, 0));
-      if (imgNode) imgNode.addEventListener('click', () => openLB(imgs, 0));
-    });
+  let gallery = [];
+  let index = 0;
 
-    // Navigation
-    if (btnClose) btnClose.addEventListener('click', closeLB);
-    if (btnNext)  btnNext.addEventListener('click', next);
-    if (btnPrev)  btnPrev.addEventListener('click', prev);
+  function updateLB() {
+    if (!lbImg || !gallery.length) return;
+    lbImg.src = gallery[index];
+    lbImg.alt = "";
+  }
 
-    // Stäng när man klickar utanför bilden
-    lb.addEventListener('click', (e) => {
-      if (e.target === lb) closeLB();
-    });
+  function openLB(imgs, startIndex = 0) {
+    gallery = imgs;
+    index = Math.max(0, Math.min(startIndex, imgs.length - 1));
+    updateLB();
+    lb.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
 
-    // Tangentbord
-    document.addEventListener('keydown', (e) => {
-      if (lb.getAttribute('aria-hidden') === 'true') return;
-      if (e.key === 'Escape') closeLB();
-      if (e.key === 'ArrowRight') next();
-      if (e.key === 'ArrowLeft') prev();
-    });
+  function closeLB() {
+    lb.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    gallery = [];
+    index = 0;
+  }
 
-    // Enkel swipe
+  function nextLB() {
+    if (!gallery.length) return;
+    index = (index + 1) % gallery.length;
+    updateLB();
+  }
+
+  function prevLB() {
+    if (!gallery.length) return;
+    index = (index - 1 + gallery.length) % gallery.length;
+    updateLB();
+  }
+
+  // öppna från card (starta på vald mini-slide)
+  cards.forEach((card) => {
+    const imgs = (card.dataset.images || "")
+      .split(",")
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    if (!imgs.length) return;
+
+    const openBtn = card.querySelector(".card-link");
+    const startIndex = () => Number(card.dataset.index || "0") || 0;
+
+    if (openBtn) openBtn.addEventListener("click", () => openLB(imgs, startIndex()));
+  });
+
+  if (btnClose) btnClose.addEventListener("click", closeLB);
+  if (btnNext) btnNext.addEventListener("click", nextLB);
+  if (btnPrev) btnPrev.addEventListener("click", prevLB);
+
+  lb.addEventListener("click", (e) => {
+    if (e.target === lb) closeLB();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (lb.getAttribute("aria-hidden") === "true") return;
+    if (e.key === "Escape") closeLB();
+    if (e.key === "ArrowRight") nextLB();
+    if (e.key === "ArrowLeft") prevLB();
+  });
+
+  // swipe i lightbox
+  if (lbImg) {
     let startX = null;
-    imgEl.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
-    imgEl.addEventListener('touchend', (e) => {
-      if (startX === null) return;
+    lbImg.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    lbImg.addEventListener("touchend", (e) => {
+      if (startX == null) return;
       const dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+      if (Math.abs(dx) > 40) (dx < 0 ? nextLB : prevLB)();
       startX = null;
-    }, {passive:true});
-  })();
+    }, { passive: true });
+  }
 });
+/* --- NYTT SCRIPT FÖR PILARNA --- */
+  const navArrows = document.querySelectorAll('.nav-arrow');
+
+  navArrows.forEach(arrow => {
+    arrow.addEventListener('click', (e) => {
+      // Hitta kortet som pilen tillhör
+      const card = arrow.closest('.project-card');
+      // Hitta bildslidern inuti just det kortet
+      const slider = card.querySelector('.image-slider');
+      
+      // Räkna ut hur brett kortet är just nu (så vi vet hur långt vi ska scrolla)
+      const scrollAmount = slider.offsetWidth;
+
+      if (arrow.classList.contains('next-arrow')) {
+        // Scrolla höger (nästa)
+        slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      } else {
+        // Scrolla vänster (föregående)
+        slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      }
+    });
+  });
