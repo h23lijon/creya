@@ -542,8 +542,8 @@ body {
 }
 
 @media (max-width: 600px){
-  .hero-section{ min-height: 90vh; }
-  .hero-content{ min-height: 90vh; justify-content: center; }
+  .hero-section{ min-height: 65vh; }
+  .hero-content{ min-height: 65vh; justify-content: center; }
   .intro-text { text-align: center; margin: 2rem 1.5rem; }
   .intro-text h1 { font-size: 5rem; line-height: 3.7rem; }
   .intro-text p { font-size: .95rem; max-width: 260px; margin: 2rem auto 0; text-align: center; }
