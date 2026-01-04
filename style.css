@@ -25,23 +25,21 @@ body {
 [id] { scroll-margin-top: 7rem; }
 
 /* =========================
-   HEADER: match screenshots
-   start: fully transparent
-   scroll: black transparent bar
+   HEADER
    ========================= */
 .site-header{
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 1000;
   padding: 1.1rem 0;
-  background: transparent;          /* startläge */
+  background: transparent;
   transition: background-color .25s ease, box-shadow .25s ease;
 }
 
 .site-header.scrolled{
-  background: rgba(0,0,0,.55);      /* svart, transparent */
+  background: rgba(0,0,0,.55);
   box-shadow: 0 2px 14px rgba(0,0,0,.25);
-  backdrop-filter: blur(2px);       /* subtilt, kan tas bort om du vill */
+  backdrop-filter: blur(2px);
 }
 
 .header-inner{
@@ -59,7 +57,7 @@ body {
 }
 
 .header-logo{
-  height: 46px;     /* ungefär som i din screenshot */
+  height: 46px;
   width: auto;
   display:block;
 }
@@ -102,7 +100,7 @@ body {
 
 /* Mobile menu button */
 .menu-toggle{
-  display:none;
+  display:none; /* Döljs på desktop, visas i media query nedan */
   width: 44px;
   height: 44px;
   border: 0;
@@ -121,7 +119,6 @@ body {
 
 /* ===== Hero ===== */
 .hero-section {
-
   min-height: 95vh;
   width: 100%;
   position: relative;
@@ -133,8 +130,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* Detta gör samma sak som background-size: cover */
-  z-index: -1;        /* Lägger bilden bakom texten */
+  object-fit: cover;
+  z-index: -1;
 }
 
 .hero-content {
@@ -247,226 +244,6 @@ body {
 }
 
 /* ===== Portfolio ===== */
-/* --- GRID LAYOUT --- */
-.portfolio-grid {
-  display: grid;
-  gap: 1.25rem;       /* Mellanrum (ca 20px) */
-  padding: 1.25rem;   /* Luft runt hela sektionen */
-  
-  /* MOBIL: 1 kolumn (Standard) */
-  grid-template-columns: 1fr;
-}
-
-/* --- NAVIGATIONSPILAR --- */
-.nav-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%); /* Centrera vertikalt */
-  z-index: 10; /* Måste ligga över både bild och overlay */
-  
-  background-color: rgba(44, 42, 42, 0.5); /* Halvgenomskinlig vit */
-  backdrop-filter: blur(2px); /* Snygg "frosted" effekt */
-  color: #fff;
-  border: none;
-  border-radius: 50%; /* Gör dem runda */
-  
-  width: 2.5rem;  /* Storlek på knappen */
-  height: 2.5rem;
-  font-size: 1.2rem; /* Storlek på pil-tecknet */
-  
-  cursor: pointer;
-  
-  /* Osynliga som standard */
-  opacity: 0; 
-  transition: opacity 0.3s ease, background-color 0.2s ease;
-  
-  /* Flex för att centrera pilen i cirkeln */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 2px; /* Finjustering av pilens position */
-}
-
-/* Placering vänster/höger */
-.prev-arrow { left: 1rem; }
-.next-arrow { right: 1rem; }
-
-/* VIKTIGT: Visa pilarna när man hovrar på KORTET */
-.project-card:hover .nav-arrow {
-  opacity: 1;
-}
-
-/* Effekt när man hovrar på själva PILEKNAPPEN */
-.nav-arrow:hover {
-  background-color: rgba(44, 42, 42, 0.7); /* Blir vitare vid hover */
-}
-
-/* --- MOBILANPASSNING --- */
-/* På touch-skärmar behövs oftast inte pilar, de tar bara plats. 
-   Vi döljer dem på skärmar mindre än 768px (tablets/mobiler). */
-@media (max-width: 768px) {
-  .nav-arrow {
-    display: none;
-  }
-}
-/* TABLET / MELLANSTOR (ca >768px): 2 kolumner */
-@media (min-width: 48rem) { 
-  .portfolio-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* STOR SKÄRM / DESKTOP (ca >1024px): 3 kolumner */
-@media (min-width: 64rem) { 
-  .portfolio-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.video-wrapper {
-  flex: 0 0 100%;
-  width: 100%;
-  height: 100%;
-  background-color: #f0f0f0; /* Bakgrundsfärg för "papperet" */
-  display: flex;
-  align-items: center;       /* Centrera videon vertikalt */
-  justify-content: center;   /* Centrera videon horisontellt */
-  scroll-snap-align: start;
-}
-
-.video-wrapper video {
-  width: 100%;               /* Videon tar hela bredden */
-  height: auto;              /* Höjden anpassas så proportionerna blir rätt */
-  object-fit: contain;       /* Visa hela videon */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Snygg skugga runt videon */
-}
-
-/* --- KORTET (A4 FORMAT) --- */
-.project-card {
-  position: relative;
-  width: 100%;
-  
-  /* Tvingar formatet till stående A4 */
-  aspect-ratio: 210 / 297; 
-  
-  /* Inga rundade hörn */
-  border-radius: 0; 
-  
-  overflow: hidden;
-  background-color: #f0f0f0; /* Ljusgrå platshållare */
-}
-
-/* --- BILDGALLERI (SCROLL SNAP) --- */
-/* --- BILDGALLERI (SCROLL SNAP) --- */
-.image-slider {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  
-  /* Aktiverar swipe/scroll i sidled */
-  overflow-x: auto; 
-  scroll-snap-type: x mandatory; 
-  
-  /* Döljer scrollbaren */
-  scrollbar-width: none;
-} /* <--- HÄR MÅSTE DU STÄNGA FÖRSTA REGELN! */
-
-.image-slider::-webkit-scrollbar { 
-  display: none; 
-}
-
-/* Här slår vi ihop reglerna så de gäller BÅDE img och video */
-.image-slider img, 
-.image-slider video {    
-  flex: 0 0 100%;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  scroll-snap-align: start;
-}
-/* --- TEXT OVERLAY --- */
-.card-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  
-  /* Gradienten */
-  background: linear-gradient(
-    to bottom, 
-    rgba(0,0,0,0) 0%, 
-    rgba(0,0,0,0.2) 50%, 
-    rgba(0,0,0,0.8) 100%
-  );
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 1.5rem;
-  box-sizing: border-box;
-  
-  pointer-events: none; 
-  
-  /* NYTT: Gör att övergången blir mjuk (0.3 sekunder) */
-  transition: opacity 0.3s ease-in-out;
-  opacity: 1; /* Synlig som standard */
-}
-
-/* NYTT: När man hovrar på kortet, sätt overlay till genomskinlig */
-.project-card:hover .card-overlay {
-  opacity: 0;
-}
-
-.card-content {
-  pointer-events: auto; /* Gör texten klickbar/markerbar igen */
-  color: #fff;
-  text-align: left;
-  
-  /* Typsnittet du önskade */
-  font-family: "playfair-display", serif;
-}
-
-.image-slider {
-  /* ... din gamla kod ... */
-  cursor: grab; /* Visar en hand */
-}
-
-.image-slider:active {
-  cursor: grabbing; /* Visar en stängd hand när man drar */
-}
-
-/* --- TYPOGRAFI --- */
-.badge {
-  display: inline-block;
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(0.3rem);
-  
-  color: #fff;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06rem;
-  
-  padding: 0.25rem 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0; /* Inga rundade hörn */
-}
-
-.card-content h3 {
-  margin: 0 0 0.3rem 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.2;
-}
-
-.card-content p {
-  margin: 0;
-  font-size: 0.9rem;
-  opacity: 0.9;
-  font-weight: 400; /* Vanlig textvikt för brödtext */
-}
-
 .portfolio-section {
   background: #f5f5f5;
   padding: 2rem 4rem 4rem;
@@ -483,221 +260,162 @@ body {
   padding-bottom: 2rem;
 }
 
+/* --- GRID LAYOUT --- */
 .portfolio-grid {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  /* MOBIL: 1 kolumn (Standard) */
+  grid-template-columns: 1fr;
   max-width: var(--maxw);
   margin: 0 auto;
-  display: grid;
-  gap: clamp(1rem, 2.5vw, 2rem);
-  grid-template-columns: 1fr;
 }
 
+/* TABLET (ca >768px): 2 kolumner */
+@media (min-width: 48rem) { 
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
-@media (min-width: 700px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .portfolio-grid { grid-template-columns: repeat(3, 1fr); } }
+/* DESKTOP (ca >1024px): 3 kolumner */
+@media (min-width: 64rem) { 
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
-.card {
+/* --- KORTET (A4 FORMAT) --- */
+.project-card {
   position: relative;
+  width: 100%;
+  aspect-ratio: 210 / 297; 
+  border-radius: 0; 
   overflow: hidden;
-  border-radius: 0;
-  background: #fff;
-  box-shadow: 0 10px 30px rgba(0,0,0,.10);
+  background-color: #f0f0f0;
 }
 
-/* media wrapper för mini-slider */
-.card-media{
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
+/* --- BILDGALLERI (SCROLL SNAP) --- */
+.image-slider {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto; 
+  scroll-snap-type: x mandatory; 
+  scrollbar-width: none;
+  cursor: grab;
 }
 
-.card-img {
+.image-slider:active {
+  cursor: grabbing;
+}
+
+.image-slider::-webkit-scrollbar { 
+  display: none; 
+}
+
+.image-slider img, 
+.image-slider video {    
+  flex: 0 0 100%;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.02);
-  transition: transform .5s ease;
+  scroll-snap-align: start;
 }
 
-/* overlay text */
-.card .overlay {
-  pointer-events: none;
+/* Video Wrapper */
+.video-wrapper {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* --- NAVIGATIONSPILAR --- */
+.nav-arrow {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(44, 42, 42, 0.5);
+  backdrop-filter: blur(2px);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0; 
+  transition: opacity 0.3s ease, background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 2px;
+}
+
+.prev-arrow { left: 1rem; }
+.next-arrow { right: 1rem; }
+
+.project-card:hover .nav-arrow { opacity: 1; }
+.nav-arrow:hover { background-color: rgba(44, 42, 42, 0.7); }
+
+/* --- TEXT OVERLAY --- */
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom, 
+    rgba(0,0,0,0) 0%, 
+    rgba(0,0,0,0.2) 50%, 
+    rgba(0,0,0,0.8) 100%
+  );
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: clamp(1rem, 2.5vw, 2rem);
+  padding: 1.5rem;
+  box-sizing: border-box;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.project-card:hover .card-overlay { opacity: 0; }
+
+.card-content {
+  pointer-events: auto;
   color: #fff;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity .35s ease, transform .35s ease;
-  background: linear-gradient(180deg,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,.25) 40%,
-    rgba(0,0,0,.55) 65%,
-    rgba(0,0,0,.85) 100%);
-}
-
-.card:hover .card-img { transform: scale(1.06); }
-.card:hover .overlay { opacity: 1; transform: translateY(0); }
-
-.card .badge {
-  display: inline-block;
-  color: var(--gold);
-  font-size: .75rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  margin-bottom: .35rem;
-}
-
-.card h3 {
+  text-align: left;
   font-family: "playfair-display", serif;
+}
+
+.card-content h3 {
+  margin: 0 0 0.3rem 0;
+  font-size: 1.5rem;
   font-weight: 600;
-  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
-  letter-spacing: 0.03rem;
   line-height: 1.2;
-  margin: 0 0 .25rem 0;
 }
 
-.card p {
+.card-content p {
   margin: 0;
-  color: rgba(255,255,255,.9);
-  font-size: .95rem;
-  letter-spacing: .01em;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  font-weight: 400;
 }
-
-/* Klick-yta för att öppna lightbox */
-.card .card-link{
-  position:absolute;
-  inset:0;
-  border:0;
-  background:transparent;
-  cursor:pointer;
-}
-
-/* mini-slider pilar + dots */
-.card-nav{
-  position:absolute;
-  top:50%;
-  transform: translateY(-50%);
-  width:44px;
-  height:44px;
-  border-radius: 999px;
-  border:0;
-  background: rgba(0,0,0,.55);
-  cursor:pointer;
-  display:grid;
-  place-items:center;
-  padding:0;
-}
-.card-nav::before{
-  content:"";
-  width: 10px;
-  height: 10px;
-  border-right: 2px solid #fff;
-  border-bottom: 2px solid #fff;
-  transform: rotate(135deg);
-  display:block;
-}
-.card-nav.next::before{ transform: rotate(-45deg); }
-.card-nav.prev{ left: .75rem; }
-.card-nav.next{ right: .75rem; }
-
-.card-dots{
-  position:absolute;
-  left:50%;
-  transform: translateX(-50%);
-  bottom: .75rem;
-  display:flex;
-  gap: .4rem;
-}
-.card-dots button{
-  width:8px; height:8px;
-  border-radius: 999px;
-  border:0;
-  background: rgba(255,255,255,.45);
-}
-.card-dots button.is-active{ background: rgba(255,255,255,.9); }
-
-@media (hover: hover){
-  .card-nav, .card-dots{ opacity:0; transition: opacity .2s ease; }
-  .card:hover .card-nav, .card:hover .card-dots{ opacity:1; }
-}
-@media (hover: none){
-  .card .overlay { opacity:1; transform:none; }
-  .card-nav, .card-dots{ opacity:1; }
-}
-
-/* figma klickbar */
-.overlay-with-device .device,
-.overlay-with-device iframe { pointer-events: auto; }
-
-.device {
-  margin-top: 1.5rem;
-  background: #eaeaea;
-  border-radius: 20px;
-  padding: 1.2rem;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
-}
-.screen {
-  background: #111;
-  border-radius: 14px;
-  padding: 10px;
-}
-.screen iframe {
-  width: 100%;
-  height: 420px;
-  border: none;
-  border-radius: 6px;
-  background: #fff;
-}
-.note { margin-top: .75rem; color: rgba(255,255,255,.9); }
-
-/* ===== Lightbox ===== */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  display: none;
-  place-items: center;
-  background: rgba(0,0,0,.92);
-  z-index: 9999;
-}
-.lightbox[aria-hidden="false"] { display: grid; }
-
-.lb-img {
-  max-width: min(92vw, 1200px);
-  max-height: 84vh;
-  object-fit: contain;
-  box-shadow: 0 20px 60px rgba(0,0,0,.5);
-  border-radius: 12px;
-}
-
-/* centrerade overlay-knappar */
-.lb-btn{
-  position:absolute;
-  width:52px;
-  height:52px;
-  border-radius: 999px;
-  border:0;
-  background: rgba(0,0,0,.65);
-  color:#fff;
-  cursor:pointer;
-  display:grid;
-  place-items:center;
-  padding:0;
-  line-height: 1;
-}
-.lb-icon{
-  display:block;
-  line-height:1;
-  font-size:34px;
-  transform: translateY(-1px);
-}
-.lb-close{ top: 1rem; right: 1rem; }
-.lb-nav{ top: 50%; transform: translateY(-50%); }
-.lb-nav.prev{ left: 1rem; }
-.lb-nav.next{ right: 1rem; }
-.lb-btn:hover{ background: rgba(0,0,0,.78); }
 
 /* ===== Footer ===== */
 .contact-footer {
@@ -758,9 +476,20 @@ body {
   transform: translateY(-3px);
 }
 
-/* ===== Responsive nav ===== */
+/* ====================================
+   MEDIA QUERIES (Responsivitet)
+   ==================================== */
+
+/* Tablet & Mobile Nav Logic */
 @media (max-width: 1024px){
-  .menu-toggle{ display:flex; }
+  /* Fixar hamburgermenyn så den är vertikal */
+  .menu-toggle { 
+    display: flex; 
+    flex-direction: column; /* Gör att strecken hamnar ovanpå varandra */
+    justify-content: center;
+    align-items: center;
+  }
+  
   #navbar-links{
     display:none;
     flex-direction: column;
@@ -776,10 +505,40 @@ body {
 }
 
 @media (max-width: 900px){
-  .about-wrapper { flex-direction: column; align-items: center; text-align: center; }
+  .about-wrapper { 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+    padding-bottom: 2rem; /* Minskat avstånd ner mot portfolio */
+    gap: 2rem; /* Minskat gap */
+  }
+  
   .about-text-content { align-items: center; text-align: center; }
-  .about-description p { max-width: 100%; }
-  .about-section { padding: 2rem 1.5rem; }
+  
+  .about-description p { 
+    max-width: 100%; 
+    padding-top: 1rem; /* Minskat avstånd upp mot rubriken */
+  }
+  
+  .about-section { 
+    padding: 2rem 1.5rem 2rem; /* Mindre padding i botten */
+  }
+  
+  /* Portfolio justeringar för mobil */
+  .portfolio-section {
+    padding-top: 1rem; /* Minskat avstånd upp mot About */
+  }
+  
+  .portfolio-title {
+    font-size: 3rem; 
+    margin: 1.5rem 0; /* Minskat avstånd (var 3rem) */
+    padding-bottom: 1rem; /* Minskat avstånd (var 2rem) */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Döljer pilar på mobil */
+  .nav-arrow { display: none; }
 }
 
 @media (max-width: 600px){
