@@ -476,6 +476,36 @@ body {
   transform: translateY(-3px);
 }
 
+/* --- PAGINATION DOTS (Prickar) --- */
+.slider-dots {
+  position: absolute;
+  bottom: 1rem;       /* Ligger i nederkant */
+  left: 50%;
+  transform: translateX(-50%); /* Centrerar horisontellt */
+  display: flex;
+  gap: 0.5rem;        /* Avstånd mellan prickarna */
+  z-index: 20;        /* Måste ligga över overlay och bild */
+  pointer-events: none; /* Så de inte är i vägen för swipe */
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.4); /* Halvgenomskinlig vit */
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active {
+  background-color: #fff; /* Helvit för aktiv bild */
+  transform: scale(1.2);  /* Gör den aktiva pricken lite större */
+}
+
+/* Om du vill dölja prickar på desktop och bara ha dem på mobil: */
+@media (min-width: 1025px) {
+  .slider-dots { display: none; }
+}
+
 /* ====================================
    MEDIA QUERIES (Responsivitet)
    ==================================== */
