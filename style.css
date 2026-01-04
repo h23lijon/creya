@@ -542,9 +542,18 @@ body {
 }
 
 @media (max-width: 600px){
-  .hero-section{ min-height: 65vh; }
-  .hero-content{ min-height: 65vh; justify-content: center; }
+  .hero-section{ min-height: 55vh; }
+  .hero-content{ min-height: 55vh; justify-content: center; }
   .intro-text { text-align: center; margin: 2rem 1.5rem; }
   .intro-text h1 { font-size: 5rem; line-height: 3.7rem; }
   .intro-text p { font-size: .95rem; max-width: 260px; margin: 2rem auto 0; text-align: center; }
+  .about-text-content h2 {
+    font-size: 3.5rem;
+    line-height: 0.8;  
+  }
+  .titel p {
+    font-size: 0.9rem; 
+    margin-top: 0.5rem; 
+    text-align: center;
+  }
 }
