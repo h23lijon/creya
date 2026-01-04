@@ -92,9 +92,9 @@ Att skapa är mitt främsta uttryckssätt; ett verktyg för att sortera intryck 
   <button class="nav-arrow next-arrow" aria-label="Nästa bild">&#10095;</button>
     <div class="card-overlay">
       <div class="card-content">
-        <span class="badge">ILLUSTRATION</span>
+
         <h3>Barnposters</h3>
-        <p>Illustrerade i akvarell</p>
+        <p>Illustrationer i akvarell</p>
       </div>
     </div>
   </article>
@@ -121,27 +121,23 @@ Att skapa är mitt främsta uttryckssätt; ett verktyg för att sortera intryck 
   <button class="nav-arrow next-arrow" aria-label="Nästa bild">&#10095;</button>
     <div class="card-overlay">
       <div class="card-content">
-        <span class="badge">Layout</span>
-        <h3>Layout- & typografimanual</h3>
-        <p>InDesign</p>
+
+        <h3>Manual</h3>
+        <p>Layout, design och illustrationer</p>
       </div>
     </div>
   </article>
-
-  <article class="project-card">
-    <div class="image-slider">
-      <img src="img/logo.jpg" alt="Projektbild 4" loading="lazy">
-      <img src="img/bild5.jpg" alt="Projektbild 5" loading="lazy">
+<article class="project-card">
+  <div class="image-slider">
+    <div class="video-wrapper">
+       <video autoplay loop muted playsinline>
+          <source src="img/film2.mp4" type="video/mp4">
+       </video>
     </div>
-      <button class="nav-arrow prev-arrow" aria-label="Föregående bild">&#10094;</button>
-  <button class="nav-arrow next-arrow" aria-label="Nästa bild">&#10095;</button>
-    <div class="card-overlay">
-      <div class="card-content">
-        <span class="badge">Branding</span>
-        <h3>Norrsken Identity</h3>
-        <p>Visual identity and logo</p>
-      </div>
-    </div>
+    <img src="img/logo.jpg" alt="Projektbild 4" loading="lazy">
+    <img src="img/bild5.jpg" alt="Projektbild 5" loading="lazy">
+  </div>
+  </article>
   </article>
 
 <article class="project-card">
@@ -160,8 +156,8 @@ Att skapa är mitt främsta uttryckssätt; ett verktyg för att sortera intryck 
     
     <div class="card-overlay">
       <div class="card-content">
-        <span class="badge">Illustration</span>
-        <h3>Digital konst</h3>
+
+        <h3>Digital illustration</h3>
         <p>Timelapse av process</p>
       </div>
     </div>
@@ -170,15 +166,15 @@ Att skapa är mitt främsta uttryckssätt; ett verktyg för att sortera intryck 
   <article class="project-card">
     <div class="image-slider">
       <img src="img/logo_sound@2x.png" alt="Projektbild 7" loading="lazy">
-      <img src="img/bild2.jpg" alt="Projektbild 8" loading="lazy">
+      <img src="img/flexifit@2x.png" alt="Projektbild 8" loading="lazy">
     </div>
     <button class="nav-arrow prev-arrow" aria-label="Föregående bild">&#10094;</button>
   <button class="nav-arrow next-arrow" aria-label="Nästa bild">&#10095;</button>
     <div class="card-overlay">
       <div class="card-content">
-        <span class="badge">Branding</span>
-        <h3>Logotyp</h3>
-        <p>För fiktivt företag SoundScape</p>
+  
+        <h3>Logotypdesign</h3>
+        <p>Design av logotyper</p>
       </div>
     </div>
   </article>
@@ -220,15 +216,21 @@ Att skapa är mitt främsta uttryckssätt; ett verktyg för att sortera intryck 
     </div>
 
     <div class="social-icons">
-      <a href="#" class="social" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="#" class="social" aria-label="Behance"><i class="fa-brands fa-behance"></i></a>
-      <a href="#" class="social" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+
+  <a href="https://www.linkedin.com/in/linnea-jones-4904b5321/" target="_blank" class="social" aria-label="LinkedIn">
+  <i class="fa-brands fa-linkedin-in"></i>
+</a>
     </div>
   </div>
 </footer>
 
 <script src="script.js"></script>
 <script>
+document.addEventListener("DOMContentLoaded", () => {
+  
+  /* ---------------------------------------------------------
+     DEL 1: DRA MED MUSEN (DRAG-AND-DROP)
+     --------------------------------------------------------- */
   const sliders = document.querySelectorAll('.image-slider');
 
   sliders.forEach(slider => {
@@ -241,26 +243,76 @@ Att skapa är mitt främsta uttryckssätt; ett verktyg för att sortera intryck 
       slider.classList.add('active');
       startX = e.pageX - slider.offsetLeft;
       scrollLeft = slider.scrollLeft;
+      slider.style.cursor = 'grabbing';
     });
 
     slider.addEventListener('mouseleave', () => {
       isDown = false;
       slider.classList.remove('active');
+      slider.style.cursor = 'grab';
     });
 
     slider.addEventListener('mouseup', () => {
       isDown = false;
       slider.classList.remove('active');
+      slider.style.cursor = 'grab';
     });
 
     slider.addEventListener('mousemove', (e) => {
       if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 2; // *2 gör att det scrollar lite snabbare
+      const walk = (x - startX) * 2; 
       slider.scrollLeft = scrollLeft - walk;
     });
   });
+
+  /* ---------------------------------------------------------
+     DEL 2: PILARNA (MED LOOP)
+     --------------------------------------------------------- */
+  const navArrows = document.querySelectorAll('.nav-arrow');
+
+  navArrows.forEach(arrow => {
+    arrow.addEventListener('click', (e) => {
+      // Hitta slidern i just detta kort
+      const card = arrow.closest('.project-card');
+      const slider = card.querySelector('.image-slider');
+
+      // Bredden på ett "steg" (kortets bredd)
+      const itemWidth = slider.clientWidth;
+      
+      // Räkna ut max scroll (Total bredd - Synlig bredd)
+      // Vi drar av 5px för att vara säkra på att vi träffar gränsen
+      const maxScroll = slider.scrollWidth - slider.clientWidth - 5;
+
+      if (arrow.classList.contains('next-arrow')) {
+        // --- KLICK PÅ HÖGER (NÄSTA) ---
+        
+        // Om vi redan är på slutet (eller förbi)...
+        if (slider.scrollLeft >= maxScroll) {
+          // ...hoppa tillbaka till START (0)
+          slider.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          // Annars, scrolla ETT STEG framåt
+          slider.scrollBy({ left: itemWidth, behavior: 'smooth' });
+        }
+
+      } else {
+        // --- KLICK PÅ VÄNSTER (FÖREGÅENDE) ---
+        
+        // Om vi är i början...
+        if (slider.scrollLeft <= 5) {
+          // ...hoppa till SLUTET
+          slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' });
+        } else {
+          // Annars, scrolla ETT STEG bakåt
+          slider.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+});
 </script>
 </body>
 </html>
